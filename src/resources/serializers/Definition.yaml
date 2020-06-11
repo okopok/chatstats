@@ -1,6 +1,0 @@
-unreal4u\TelegramAPI\Telegram\Types\Message:
-  attributes:
-    from:
-      type: unreal4u\TelegramAPI\Telegram\Types\User
-
-unreal4u\TelegramAPI\Telegram\Types\User: ~
