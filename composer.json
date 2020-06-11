@@ -1,0 +1,22 @@
+{
+  "name": "okopok/chatstats",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "molodtsov",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+    "symfony/symfony": "~5.0.8",
+    "tightenco/collect": "~7.10.3",
+    "str/str": "~1.1.2",
+    "unreal4u/telegram-api": "~3.5.0",
+    "symfony/dom-crawler": "*",
+    "symfony/stopwatch": "^5.0",
+    "twig/twig": "^3.0",
+    "jms/serializer": "^3.7"
+  }
+}

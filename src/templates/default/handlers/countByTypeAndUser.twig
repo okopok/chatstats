@@ -1,0 +1,35 @@
+{% for type, users in data %}
+    <canvas id="{{ templateKey }}_{{ type }}" width="400"
+            height="{% if users|length > 10 %}{{ users|length * 10 }}{% else %}100{% endif %}"></canvas>
+    <script>
+        $(function () {
+            new Chart('{{ templateKey }}_{{ type }}', {
+                    type: 'horizontalBar',
+                    data: {
+                        labels: {{ users|keys|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw }},
+                        datasets: [{
+                            label: '{{ type }}',
+                            data: [{{ users|join(', ')|raw }}],
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            colorschemes: {
+                                scheme: 'brewer.Paired12'
+                            }
+                        },
+                        responsible: true,
+                        animation: {
+                            duration: 0 // general animation time
+                        },
+                        hover: {
+                            animationDuration: 0 // duration of animations when hovering an item
+                        },
+                        responsiveAnimationDuration: 0 // animation duration after a resize
+                    }
+                }
+            );
+        });
+    </script>
+    <hr/>
+{% endfor %}

@@ -1,0 +1,158 @@
+{% for key, arr in data %}
+    <h3>
+        {% if key == 'year' %}
+            по годам
+        {% endif %}
+        {% if key == 'monthsTop10' %}
+            топ 10 месяцев
+        {% endif %}
+        {% if key == 'daysTop10' %}
+            топ 10 дней
+        {% endif %}
+        {% if key == 'weeks' %}
+            разбивка по неделям
+        {% endif %}
+        {% if key == 'all_days' %}
+            разбивка по дням
+        {% endif %}
+        {% if key == 'all_months' %}
+            разбивка по месяцам
+        {% endif %}
+    </h3>
+    {% if key == 'year' %}
+        <canvas id="countTotalByDate_year" width="400" height="100"
+                style="display: block; width: 500px; height: 250px;"></canvas>
+        <script>
+            $(function () {
+                new Chart('countTotalByDate_year', {
+                        type: 'bar',
+                        data: {
+                            labels: {{ arr|keys|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw }},
+                            datasets: [{
+                                label: 'По годам',
+                                data: [{{ arr|join(', ')|raw }}],
+                            }]
+                        },
+                        options: {
+                            plugins: {
+                                colorschemes: {
+                                    scheme: 'brewer.Paired12'
+                                }
+                            },
+                            animation: {
+                                duration: 0 // general animation time
+                            },
+                            hover: {
+                                animationDuration: 0 // duration of animations when hovering an item
+                            },
+                            responsiveAnimationDuration: 0 // animation duration after a resize
+                        }
+                    }
+                );
+            });
+        </script>
+    {% elseif key == 'weeks' %}
+        <canvas id="countTotalByDate_weeks" width="400" height="100"
+                style="display: block; width: 500px; height: 250px;"></canvas>
+        <script>
+            $(function () {
+                new Chart('countTotalByDate_weeks', {
+                        type: 'bar',
+                        data: {
+                            labels: {{ arr|keys|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw }},
+                            datasets: [{
+                                label: 'По неделям',
+                                data: [{{ arr|join(', ')|raw }}],
+                            }]
+                        },
+                        options: {
+                            plugins: {
+                                colorschemes: {
+                                    scheme: 'brewer.Paired12'
+                                }
+                            },
+                            animation: {
+                                duration: 0 // general animation time
+                            },
+                            hover: {
+                                animationDuration: 0 // duration of animations when hovering an item
+                            },
+                            responsiveAnimationDuration: 0 // animation duration after a resize
+                        }
+                    }
+                );
+            });
+        </script>
+    {% elseif key == 'all_months' %}
+        <canvas id="countTotalByDate_all_months" width="400" height="100"
+                style="display: block; width: 500px; height: 250px;"></canvas>
+        <script>
+            $(function () {
+                new Chart('countTotalByDate_all_months', {
+                        type: 'bar',
+                        data: {
+                            plugins: {
+                                colorschemes: {
+                                    scheme: 'brewer.Paired12'
+                                }
+                            },
+                            labels: {{ arr|keys|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw }},
+                            datasets: [{
+                                label: 'По месяцам',
+                                data: [{{ arr|join(', ')|raw }}],
+                            }]
+                        },
+                        options: {
+                            animation: {
+                                duration: 0 // general animation time
+                            },
+                            hover: {
+                                animationDuration: 0 // duration of animations when hovering an item
+                            },
+                            responsiveAnimationDuration: 0 // animation duration after a resize
+                        }
+                    }
+                );
+            });
+        </script>
+    {% elseif key == 'all_days' %}
+        <canvas id="countTotalByDate_all_days" width="400" height="100"
+                style="display: block; width: 500px; height: 250px;"></canvas>
+        <script>
+            $(function () {
+                new Chart('countTotalByDate_all_days', {
+                        type: 'bar',
+                        data: {
+                            labels: {{ arr|keys|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw }},
+                            datasets: [{
+                                label: 'По дням',
+                                data: [{{ arr|join(', ')|raw }}],
+                            }]
+                        },
+                        options: {
+                            plugins: {
+                                colorschemes: {
+                                    scheme: 'brewer.Paired12'
+                                }
+                            },
+                            animation: {
+                                duration: 0 // general animation time
+                            },
+                            hover: {
+                                animationDuration: 0 // duration of animations when hovering an item
+                            },
+                            responsiveAnimationDuration: 0 // animation duration after a resize
+                        }
+                    }
+                );
+            });
+        </script>
+    {% else %}
+        <ol>
+            {% for dataKey, ct in arr %}
+                <li>{{ dataKey }} — {{ ct }}</li>
+            {% endfor %}
+        </ol>
+    {% endif %}
+    <hr/>
+{% endfor %}

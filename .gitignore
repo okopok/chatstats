@@ -1,0 +1,7 @@
+vendor/
+var/cache/parsers
+var/twig/cache
+var/html
+public/data
+.idea
+codealike.json

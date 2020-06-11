@@ -1,0 +1,78 @@
+<div class="accordion" id="accordion2_countUsersByDayNHours">
+    {% for usename, stat in data %}
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle collapsed" data-toggle="collapse"
+                   data-parent="#accordion2_countUsersByDayNHours" href="#countUsersByDayNHours_{{ stat.hash }}">
+                    {{ usename }}
+                </a>
+            </div>
+            <div id="countUsersByDayNHours_{{ stat.hash }}" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <canvas id="countUsersByDayNHours_weeks_{{ stat.hash }}" width="400" height="100"
+                            style="display: block; width: 500px; height: 250px;"></canvas>
+                    <script>
+                        $(function () {
+                            new Chart('countUsersByDayNHours_weeks_{{ stat.hash }}', {
+                                    type: 'bar',
+                                    data: {
+                                        labels: {{ stat.dayOfWeek|keys|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw }},
+                                        datasets: [{
+                                            label: 'По дням недели',
+                                            data: [{{ stat.dayOfWeek|join(', ')|raw }}],
+                                        }]
+                                    },
+                                    options: {
+                                        animation: {
+                                            duration: 0 // general animation time
+                                        },
+                                        hover: {
+                                            animationDuration: 0 // duration of animations when hovering an item
+                                        },
+                                        responsiveAnimationDuration: 0 // animation duration after a resize
+                                    }
+                                }
+                            );
+                        });
+                    </script>
+                    <hr/>
+                    <canvas id="countUsersByDayNHours_days_{{ stat.hash }}" width="400" height="100"
+                            style="display: block; width: 500px; height: 250px;"></canvas>
+                    <script>
+                        $(function () {
+                            new Chart('countUsersByDayNHours_days_{{ stat.hash }}', {
+                                    type: 'line',
+                                    data: {
+                                        labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+                                        datasets: [
+                                            {% for weekday, hours in stat.dayOfWeekByHour %}
+                                            {
+                                                label: '{{ weekday }}',
+                                                data: [{{ hours|join(', ')|raw }}],
+                                            },
+                                            {% endfor %}
+                                        ]
+                                    },
+                                    options: {
+                                        plugins: {
+                                            colorschemes: {
+                                                scheme: 'brewer.Paired12'
+                                            }
+                                        },
+                                        animation: {
+                                            duration: 0 // general animation time
+                                        },
+                                        hover: {
+                                            animationDuration: 0 // duration of animations when hovering an item
+                                        },
+                                        responsiveAnimationDuration: 0 // animation duration after a resize
+                                    }
+                                }
+                            );
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

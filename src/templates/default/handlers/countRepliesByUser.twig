@@ -1,0 +1,21 @@
+<div class="accordion" id="accordion2_countRepliesByUser">
+    {% for username, stat in data %}
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle collapsed" data-toggle="collapse"
+                   data-parent="#accordion2_countRepliesByUser_" href="#countRepliesByUser_{{ username|md5 }}">
+                    {{ username }}
+                </a>
+            </div>
+            <div id="countRepliesByUser_{{ username|md5 }}" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <ol>
+                        {% for user, ct in stat %}
+                            <li>{{ user }} — {{ ct|number_format(0, '.', ' ') }}</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
