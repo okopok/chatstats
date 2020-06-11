@@ -3,9 +3,9 @@
 namespace ChatStats\StatHandlers;
 
 
-use Tightenco\Collect\Support\Enumerable;
-use ChatStats\Entity\MessageType;
 use ChatStats\Entity\Message;
+use ChatStats\Entity\MessageType;
+use Tightenco\Collect\Support\Enumerable;
 
 class CountByTypeAndUser extends AbstractHandler
 {

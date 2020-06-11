@@ -3,7 +3,6 @@
 namespace ChatStats\StatHandlers;
 
 use ChatStats\DateHelper;
-use ChatStats\Entity\MessageType;
 use ChatStats\Entity\Message;
 use function date;
 

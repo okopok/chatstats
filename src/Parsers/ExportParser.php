@@ -2,27 +2,27 @@
 
 namespace ChatStats\Parsers;
 
-use ChatStats\UserHelper;
-use DateTime;
-use DirectoryIterator;
-use Str\Str;
-use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\VarDumper\VarDumper;
-use Tightenco\Collect\Support\Collection;
-use Traversable;
 use ChatStats\Entity\Animation;
 use ChatStats\Entity\Audio;
-use ChatStats\Entity\Photo;
 use ChatStats\Entity\Document;
 use ChatStats\Entity\Location;
 use ChatStats\Entity\Message;
+use ChatStats\Entity\Photo;
 use ChatStats\Entity\Poll;
 use ChatStats\Entity\Sticker;
 use ChatStats\Entity\User;
 use ChatStats\Entity\Video;
 use ChatStats\Entity\Voice;
+use ChatStats\UserHelper;
+use DateTime;
+use DirectoryIterator;
+use Generator;
+use Str\Str;
+use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\VarDumper\VarDumper;
+use Tightenco\Collect\Support\Collection;
+use Traversable;
 use function collect;
-use function dd;
 use function file_get_contents;
 
 class ExportParser
@@ -68,7 +68,7 @@ class ExportParser
         }
     }
 
-    protected function parseDir(): ?\Generator
+    protected function parseDir(): ?Generator
     {
         $files = [];
         foreach (new DirectoryIterator($this->dir) as $key => $fileInfo) {

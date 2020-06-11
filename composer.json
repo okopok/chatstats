@@ -1,22 +1,32 @@
 {
   "name": "okopok/chatstats",
-  "description": "description",
+  "description": "Подсчёт статистики по телегамм чатикам",
   "minimum-stability": "stable",
-  "license": "proprietary",
+  "license": "GPL-3.0 +",
   "authors": [
     {
       "name": "molodtsov",
       "email": "email@example.com"
     }
   ],
+  "autoload": {
+    "psr-4": {
+      "ChatStats\\": "src"
+    },
+    "files": [
+      "public/functions.php"
+    ]
+  },
   "require": {
-    "symfony/symfony": "~5.0.8",
-    "tightenco/collect": "~7.10.3",
-    "str/str": "~1.1.2",
-    "unreal4u/telegram-api": "~3.5.0",
-    "symfony/dom-crawler": "*",
-    "symfony/stopwatch": "^5.0",
+    "php": ">=7.4",
+    "tightenco/collect": "^7.10",
+    "str/str": "^1.1",
+    "symfony/dom-crawler": "^5.1",
     "twig/twig": "^3.0",
     "jms/serializer": "^3.7"
+  },
+  "require-dev": {
+    "symfony/stopwatch": "^5.1",
+    "symfony/var-dumper": "^5.1"
   }
 }

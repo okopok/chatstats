@@ -1,7 +1,7 @@
 <blockquote>
     Выбраны все слова длиннее 2 знаков, которые не вошли в список стоп-слов (всякие предлоги и местоимения)
     приведены в нижний регистр,
-    убраны все двойные буквы (гласные и согласные) и вырезаны все знаки препинания и спецсимволы. <br />
+    убраны все двойные буквы (гласные и согласные) и вырезаны все знаки препинания и спецсимволы. <br/>
     Статистика очень приблизительная. Не учитываются различные окончания и склонения.
 </blockquote>
 <div class="accordion" id="accordion2_{{ templateKey }}_toplevel">
@@ -17,55 +17,56 @@
                 <div class="accordion" id="accordion2_{{ templateKey }}">
                     {% for username, words in data.users %}
                         {% if words is not empty %}
-                        <div class="accordion-group">
-                            <div class="accordion-heading">
-                                <a class="accordion-toggle collapsed" data-toggle="collapse"
-                                   data-parent="#accordion2_{{ templateKey }}" href="#{{ templateKey }}_{{ username|md5 }}">
-                                    {{ username }}
-                                </a>
-                            </div>
-                            <div id="{{ templateKey }}_{{ username|md5 }}" class="accordion-body collapse">
-                                <div class="accordion-inner">
-                                    <canvas id="{{ templateKey }}_{{ username|md5 }}_canvas" width="400"
-                                            height="{% if words|length > 10 %}{{ words|length * 10 }}{% else %}100{% endif %}"></canvas>
-                                    <script>
-                                        $(function () {
-                                            new Chart('{{ templateKey }}_{{ username|md5 }}_canvas', {
-                                                    type: 'horizontalBar',
-                                                    data: {
-                                                        labels: {{ words|keys|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw }},
-                                                        datasets: [{
-                                                            label: 'Популярные слова',
-                                                            data: [{{ words|join(', ')|raw }}],
-                                                        }]
-                                                    },
-                                                    options: {
-                                                        plugins: {
-                                                            colorschemes: {
-                                                                scheme: 'brewer.Paired12'
-                                                            }
+                            <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse"
+                                       data-parent="#accordion2_{{ templateKey }}"
+                                       href="#{{ templateKey }}_{{ username|md5 }}">
+                                        {{ username }}
+                                    </a>
+                                </div>
+                                <div id="{{ templateKey }}_{{ username|md5 }}" class="accordion-body collapse">
+                                    <div class="accordion-inner">
+                                        <canvas id="{{ templateKey }}_{{ username|md5 }}_canvas" width="400"
+                                                height="{% if words|length > 10 %}{{ words|length * 10 }}{% else %}100{% endif %}"></canvas>
+                                        <script>
+                                            $(function () {
+                                                new Chart('{{ templateKey }}_{{ username|md5 }}_canvas', {
+                                                        type: 'horizontalBar',
+                                                        data: {
+                                                            labels: {{ words|keys|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw }},
+                                                            datasets: [{
+                                                                label: 'Популярные слова',
+                                                                data: [{{ words|join(', ')|raw }}],
+                                                            }]
                                                         },
-                                                        responsible: true,
-                                                        animation: {
-                                                            duration: 0 // general animation time
-                                                        },
-                                                        hover: {
-                                                            animationDuration: 0 // duration of animations when hovering an item
-                                                        },
-                                                        responsiveAnimationDuration: 0 // animation duration after a resize
+                                                        options: {
+                                                            plugins: {
+                                                                colorschemes: {
+                                                                    scheme: 'brewer.Paired12'
+                                                                }
+                                                            },
+                                                            responsible: true,
+                                                            animation: {
+                                                                duration: 0 // general animation time
+                                                            },
+                                                            hover: {
+                                                                animationDuration: 0 // duration of animations when hovering an item
+                                                            },
+                                                            responsiveAnimationDuration: 0 // animation duration after a resize
+                                                        }
                                                     }
-                                                }
-                                            );
-                                        });
-                                    </script>
-{#                                    <ol>#}
-{#                                    {% for word, ct in words %}#}
-{#                                    <li>{{ word }} — {{ ct }}</li>#}
-{#                                    {% endfor %}#}
-{#                                    </ol>#}
+                                                );
+                                            });
+                                        </script>
+                                        {#                                    <ol>#}
+                                        {#                                    {% for word, ct in words %}#}
+                                        {#                                    <li>{{ word }} — {{ ct }}</li>#}
+                                        {#                                    {% endfor %}#}
+                                        {#                                    </ol>#}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -85,21 +86,22 @@
                 <div class="accordion" id="accordion2_{{ templateKey }}_uniq_level">
                     {% for username, words in data.uniq %}
                         {% if words is not empty %}
-                        <div class="accordion-group">
-                            <div class="accordion-heading">
-                                <a class="accordion-toggle collapsed" data-toggle="collapse"
-                                   data-parent="#accordion2_{{ templateKey }}_uniq_level" href="#{{ templateKey }}_{{ username|md5 }}_uniq">
-                                    {{ username }}
-                                </a>
-                            </div>
-                            <div id="{{ templateKey }}_{{ username|md5 }}_uniq" class="accordion-body collapse">
-                                <div class="accordion-inner">
-                                    {% for word, ct in words %}
-                                        <li>{{ word }} — {{ ct }}</li>
-                                    {% endfor %}
+                            <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse"
+                                       data-parent="#accordion2_{{ templateKey }}_uniq_level"
+                                       href="#{{ templateKey }}_{{ username|md5 }}_uniq">
+                                        {{ username }}
+                                    </a>
+                                </div>
+                                <div id="{{ templateKey }}_{{ username|md5 }}_uniq" class="accordion-body collapse">
+                                    <div class="accordion-inner">
+                                        {% for word, ct in words %}
+                                            <li>{{ word }} — {{ ct }}</li>
+                                        {% endfor %}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         {% endif %}
                     {% endfor %}
                 </div>

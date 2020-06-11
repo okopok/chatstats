@@ -3,6 +3,7 @@
 namespace ChatStats\Parsers;
 
 use JMS\Serializer\SerializationContext;
+use JMS\Serializer\SerializerBuilder;
 use function collect;
 use function file_exists;
 use function file_get_contents;
@@ -32,9 +33,10 @@ class CachedParser
         $this->cacheFile = $cacheFile;
     }
 
-    public function getMessages() {
+    public function getMessages()
+    {
         if ($this->cache) {
-            $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
+            $serializer = SerializerBuilder::create()->build();
 
             if ($this->rebuild || !file_exists($this->cacheFile)) {
                 $messages = $this->parser->getMessages();

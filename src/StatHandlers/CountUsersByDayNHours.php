@@ -3,9 +3,8 @@
 namespace ChatStats\StatHandlers;
 
 use ChatStats\DateHelper;
-use Tightenco\Collect\Support\Enumerable;
-use ChatStats\Entity\MessageType;
 use ChatStats\Entity\Message;
+use Tightenco\Collect\Support\Enumerable;
 use function array_key_exists;
 use function date;
 use function range;

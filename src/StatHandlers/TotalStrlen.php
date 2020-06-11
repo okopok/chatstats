@@ -2,7 +2,6 @@
 
 namespace ChatStats\StatHandlers;
 
-use ChatStats\Entity\MessageType;
 use ChatStats\Entity\Message;
 use function mb_strlen;
 

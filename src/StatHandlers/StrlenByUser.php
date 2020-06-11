@@ -2,9 +2,8 @@
 
 namespace ChatStats\StatHandlers;
 
-use Tightenco\Collect\Support\Enumerable;
-use ChatStats\Entity\MessageType;
 use ChatStats\Entity\Message;
+use Tightenco\Collect\Support\Enumerable;
 use function mb_strlen;
 
 class StrlenByUser extends AbstractHandler

@@ -2,7 +2,6 @@
 
 namespace ChatStats\StatHandlers;
 
-use ChatStats\Entity\MessageType;
 use ChatStats\Entity\Message;
 use function arsort;
 
@@ -34,7 +33,7 @@ class CountRepliesByUser extends AbstractHandler
             $this->users[$message->from->username][$message->reply_to_message->from->username]++;
         });
         return collect($this->users)
-            ->mapWithKeys(static function($value, $key) {
+            ->mapWithKeys(static function ($value, $key) {
                 arsort($value);
                 return [$key => $value];
             })

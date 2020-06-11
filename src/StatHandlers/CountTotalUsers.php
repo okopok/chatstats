@@ -2,9 +2,8 @@
 
 namespace ChatStats\StatHandlers;
 
-use Tightenco\Collect\Support\Collection;
-use ChatStats\Entity\MessageType;
 use ChatStats\Entity\Message;
+use Tightenco\Collect\Support\Collection;
 use function collect;
 
 class CountTotalUsers extends AbstractHandler

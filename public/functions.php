@@ -23,42 +23,9 @@ use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFilter;
 
-include "../src/UserHelper.php";
-include "../src/DateHelper.php";
-include "../src/Entity/MessageType.php";
-include "../src/Entity/Message.php";
-include "../src/Entity/Animation.php";
-include "../src/Entity/Audio.php";
-include "../src/Entity/Contact.php";
-include "../src/Entity/Document.php";
-include "../src/Entity/Location.php";
-include "../src/Entity/Photo.php";
-include "../src/Entity/Poll.php";
-include "../src/Entity/Sticker.php";
-include "../src/Entity/User.php";
-include "../src/Entity/Video.php";
-include "../src/Entity/Voice.php";
-include "../src/Parsers/CachedParser.php";
-include "../src/Parsers/ExportParser.php";
-include "../src/StatMachine.php";
-include "../src/StatHandlers/AbstractHandler.php";
-include "../src/StatHandlers/CountTotal.php";
-include "../src/StatHandlers/FirstMessage.php";
-include "../src/StatHandlers/CountTotalByUser.php";
-include "../src/StatHandlers/CountTotalByDate.php";
-include "../src/StatHandlers/StrlenByUser.php";
-include "../src/StatHandlers/UserMedianMessageLength.php";
-include "../src/StatHandlers/TotalStrlen.php";
-include "../src/StatHandlers/CountRepliesByUser.php";
-include "../src/StatHandlers/CountUsersByDayNHours.php";
-include "../src/StatHandlers/CountByTypeAndUser.php";
-include "../src/StatHandlers/PopularWordsCount.php";
-include "../src/StatHandlers/MedianByDate.php";
-include "../src/StatHandlers/CountTotalUsers.php";
-
 function makeData($dir, $title, $dataKey, $cache, $cacheRebuild, $debug, Stopwatch $w) {
     $cachedFile = dirname(__DIR__) . '/var/cache/parsers/' . $dataKey .'.json';
-
+    if (!file_exists($dir)) return;
     // TODO: склонение всяких слов и приведение их к общему знаменателю
     // TODO: команда для симфоней
     // TODO: почистить шаблоны

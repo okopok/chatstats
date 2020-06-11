@@ -4,8 +4,6 @@
 namespace ChatStats\StatHandlers;
 
 
-use ChatStats\Entity\MessageType;
-use ChatStats\Entity\Message;
 use function number_format;
 
 class UserMedianMessageLength extends AbstractHandler
